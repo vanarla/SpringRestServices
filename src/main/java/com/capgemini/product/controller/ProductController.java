@@ -49,7 +49,6 @@ public class ProductController {
 
 		}
 		return new ResponseEntity<Product>(HttpStatus.NOT_FOUND);
-
 	}
 
 	@DeleteMapping("/products/{productId}")
