@@ -1,4 +1,4 @@
-package com.capgemini.product;
+package com.capgemini.customer;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,4 +1,4 @@
-package com.capgemini.product;
+/*package com.capgemini.customer;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
@@ -15,9 +15,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import com.capgemini.product.modal.Product;
-import com.capgemini.product.repository.ProductRepository;
-import com.capgemini.product.service.impl.ProductServiceImpl;
+import com.capgemini.customer.modal.Product;
+import com.capgemini.customer.repository.ProductRepository;
+import com.capgemini.customer.service.impl.ProductServiceImpl;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -60,3 +60,4 @@ public void setUp()
 
 
 }
+*/
