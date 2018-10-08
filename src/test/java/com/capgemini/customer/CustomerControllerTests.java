@@ -39,19 +39,33 @@ public class CustomerControllerTests {
 
 	private MockMvc mockMvc;
 
+	//Customer customer;
 	@Before
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
 		mockMvc = MockMvcBuilders.standaloneSetup(customerController).build();
 	}
 
-	/*
-	 * @Test public void testAuthenticateCustomer() throws Exception {
-	 * when(customerService.authenticateCustomer(10,"pallavi")).thenReturn(new
-	 * Customer(10, "pallavi", "Pallavi", "pallavi@abc.com","hyderabad"));
-	 * mockMvc.perform(get("/customer").contentType(MediaType.APPLICATION_JSON_UTF8)
-	 * ).andExpect(status().isOk()); }
-	 */
+	
+	  @Test public void testAuthenticateCustomer() throws Exception {
+	  
+		  when(customerService.authenticateCustomer(Mockito.isA(Integer.class),Mockito.isA(String.class))).thenReturn(new Customer(10, "pallavi", "Pallavi", "pallavi@abc.com",
+			  "hyderabad"));
+	 mockMvc.perform(post("/customer/authenticate").contentType(MediaType.APPLICATION_JSON_UTF8
+			  ).content(
+					  "{\"customerId\": \"10\",\"customerPassword\": \"pallavi\", \"customerName\": \"Pallavi\",\"customerEmailId\": \"pallavi@abc.com\",\"customerAddress\": \"hyderabad\"}"
+					  ).accept(MediaType.APPLICATION_JSON_UTF8)
+	  ).andDo(print()).andExpect(jsonPath("$.customerId").exists()).andExpect(jsonPath(
+			  "$.customerPassword").exists())
+			  .andExpect(jsonPath("$.customerName").exists()).andExpect(jsonPath(
+			  "$.customerEmailId").exists())
+			  .andExpect(jsonPath("$.customerAddress").exists()).andExpect(jsonPath(
+			 "$.customerId").value(10))
+			  .andExpect(jsonPath("$.customerPassword").value("pallavi"))
+			  .andExpect(jsonPath("$.customerName").value("Pallavi"))
+			  .andExpect(jsonPath("$.customerEmailId").value("pallavi@abc.com"))
+			  .andExpect(jsonPath("$.customerAddress").value("hyderabad")).andDo(print()); }
+	 
 
 	
 	 @Test public void testAddCustomer() throws Exception {
@@ -76,8 +90,7 @@ public class CustomerControllerTests {
 	  .andExpect(jsonPath("$.customerAddress").value("hyderabad")).andDo(print());
 	  
 	 } 
-	 
-	/*@Test
+	/* @Test
 	public void testUpdateCustomer() throws Exception {
 
 		when(customerService.updateCustomer(Mockito.isA(Customer.class)))
@@ -91,9 +104,9 @@ public class CustomerControllerTests {
 				.andExpect(jsonPath("$.customerName").value("Vasantha Pallavi"))
 				.andExpect(jsonPath("$.customerPassword").value("pallu"));
 
-	}*/
+	}
 
-	/*@Test
+	@Test
 	public void testFindCustomerById() throws Exception {
 
 		when(customerService.findCustomerById(10))
@@ -108,13 +121,13 @@ public class CustomerControllerTests {
 				.andExpect(jsonPath("$.customerEmailId").value("pallavi@abc.com"))
 				.andExpect(jsonPath("$.customerAddress").value("hyderabad")).andDo(print());
 	}
-*/
-	/*@Test
+
+	@Test
 	public void testDeleteCustomer() throws Exception {
 		when(customerService.findCustomerById(10))
 				.thenReturn(new Customer(10, "pallavi", "Pallavi", "pallavi@abc.com", "hyderabad"));
 		mockMvc.perform(MockMvcRequestBuilders.delete("/customers/10").accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk());
-	}*/
-
+	}
+*/
 }

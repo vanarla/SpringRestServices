@@ -22,11 +22,11 @@ public class CustomerController {
 	@Autowired
 	private CustomerService customerService;
 	
-	@GetMapping
-	public ResponseEntity<Customer> authenticateCustomer(@PathVariable int customerId, String customerPassword) throws AuthenticationFailedException
+	@PostMapping("/customer/authenticate")
+	public ResponseEntity<Customer> authenticateCustomer(@RequestBody Customer customer) throws AuthenticationFailedException
 	{
-		customerService.authenticateCustomer(customerId, customerPassword);
-		return new ResponseEntity<Customer>(HttpStatus.OK);
+		
+		return new ResponseEntity<Customer>(customerService.authenticateCustomer(customer.getCustomerId(), customer.getCustomerPassword()),HttpStatus.OK);
 	}
 
 	@PostMapping("/customer")

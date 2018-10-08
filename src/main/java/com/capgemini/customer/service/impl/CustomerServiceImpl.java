@@ -20,13 +20,12 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public Customer authenticateCustomer(int customerId, String password) throws AuthenticationFailedException {
 		Optional<Customer> optionalproduct = customerRepository.findById(customerId);
-		if (optionalproduct.isPresent())
-			return optionalproduct.get();
-		if (customer.getCustomerId() == customerId) {
-			if (customer.getCustomerPassword().equals(password)) {
-				return customer;
+		if (optionalproduct.isPresent()) {
+			if (optionalproduct.get().getCustomerPassword().equals(password)) {
+				return optionalproduct.get();
 			}
 		}
+
 		throw new AuthenticationFailedException("Authentication Failed");
 
 	}
@@ -59,4 +58,3 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 }
-
